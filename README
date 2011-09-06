@@ -30,7 +30,10 @@ is very flexible and works with any given data-arrays.
 
 
 
-
+the examples, that come with the library, demonstrates:
+kinect 3D/2D tracking
+a simple marker tracking
+image-blob tracking
 
    
 
