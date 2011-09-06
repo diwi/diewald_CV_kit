@@ -1,0 +1,77 @@
+
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+AUTHOR: Thomas Diewald
+Date: 29.08.2011
+--------------------------------------------------------------------------------
+--------------------------------------------------------------------------------
+
+
+
+################################################################################
+--------------------------------------------------------------------------------
+PROCESSING - barcode library - diewald_barcode
+--------------------------------------------------------------------------------
+################################################################################
+
+
+- this library is made decoding/encoding barcodes
+- its basically a wrapper for google's zxing library 
+   ( http://code.google.com/p/zxing/ )
+
+
+--------------------------------------------------------------------------------
+online example: 
+ - 
+
+--------------------------------------------------------------------------------
+ZIP_CONTENT:
+1) processing examples
+2) reference
+3) source-code
+4) library: diewald_barcode.jar, zxing_core.jar, zxing_javase.jar
+      
+
+--------------------------------------------------------------------------------
+FEATURES:
+
+- ENCODING of barcodes:
+    CODE_128
+    CODE_39
+    EAN_13
+    EAN_8
+    ITF
+    QR_CODE
+    
+- DECODING of barcodes:
+    AZTEC
+    CODABAR
+    CODE_128
+    CODE_39
+    CODE_93
+    DATA_MATRIX
+    EAN_13
+    EAN_8
+    ITF
+    PDF_417
+    QR_CODE
+    UPC_A
+    UPC_E  
+ 
+- decoding multiple barcodes at once
+- decoding multiple QRcodesbarcodes at once
+- exception feedback on decoing/encoding failures
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+USEFUL LINKS TO THIS TOPIC:
+http://code.google.com/p/zxing/
+
+
