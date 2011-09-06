@@ -14,7 +14,7 @@ PROCESSING - computer vision library - diewald_CV_kit
 --------------------------------------------------------------------------------
 ################################################################################
 
-
+project page: http://thomasdiewald.com/blog/?p=1107
 
 this library contains tools that are used in the field of computer vision.
 its not a wrapper of openCV or some other libraries , so maybe you are missing 
@@ -40,8 +40,11 @@ image-blob tracking
 
 --------------------------------------------------------------------------------
 online example: 
- - 
+http://www.openprocessing.org/visuals/?visualID=35858
+http://www.openprocessing.org/visuals/?visualID=35859
 
+videos:
+http://thomasdiewald.com/blog/?p=1107
 --------------------------------------------------------------------------------
 ZIP_CONTENT:
 1) processing examples
