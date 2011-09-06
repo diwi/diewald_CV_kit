@@ -2,7 +2,7 @@
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 AUTHOR: Thomas Diewald
-Date: 29.08.2011
+Date: 06.09.2011
 --------------------------------------------------------------------------------
 --------------------------------------------------------------------------------
 
@@ -10,14 +10,29 @@ Date: 29.08.2011
 
 ################################################################################
 --------------------------------------------------------------------------------
-PROCESSING - barcode library - diewald_barcode
+PROCESSING - computer vision library - diewald_CV_kit
 --------------------------------------------------------------------------------
 ################################################################################
 
 
-- this library is made decoding/encoding barcodes
-- its basically a wrapper for google's zxing library 
-   ( http://code.google.com/p/zxing/ )
+
+this library contains tools that are used in the field of computer vision.
+its not a wrapper of openCV or some other libraries , so maybe you are missing 
+some features ( ... which may be implemented in the future).
+
+its designed to be very fast to use it for realtime applications (webcam-tracking, kinect-tracking, ...).
+also, it works very well in combination with the kinect-library 
+(dlibs.freenect - http://thomasdiewald.com/blog/?p=109 )... which i basically 
+built it for ... to track blobs, generate contours from 3d-data, and else.
+
+it should work in combination with other libraries too, since the blobdetection 
+is very flexible and works with any given data-arrays.
+
+
+
+
+
+   
 
 
 --------------------------------------------------------------------------------
@@ -29,40 +44,22 @@ ZIP_CONTENT:
 1) processing examples
 2) reference
 3) source-code
-4) library: diewald_barcode.jar, zxing_core.jar, zxing_javase.jar
+4) library: diewald_CV_kit.jar
       
 
 --------------------------------------------------------------------------------
 FEATURES:
 
-- ENCODING of barcodes:
-    CODE_128
-    CODE_39
-    EAN_13
-    EAN_8
-    ITF
-    QR_CODE
-    
-- DECODING of barcodes:
-    AZTEC
-    CODABAR
-    CODE_128
-    CODE_39
-    CODE_93
-    DATA_MATRIX
-    EAN_13
-    EAN_8
-    ITF
-    PDF_417
-    QR_CODE
-    UPC_A
-    UPC_E  
- 
-- decoding multiple barcodes at once
-- decoding multiple QRcodesbarcodes at once
-- exception feedback on decoing/encoding failures
+- connected component labeling - blobdetection
+- contours:
+  continuous polyline
+  a blob has only one outer contours, and can have endless inner contours
+  the outer contour always goes in clockwise-direction, the inner ones go counter-clockwise
 
-
+- convex hull
+- double-linked-list (used for the covex hull for quick node adding/removing)
+- polyline tools (simplification, areasize, length, etc.
+- color class for fast generating/extracting of color components
 
 
 
@@ -72,6 +69,6 @@ FEATURES:
 
 --------------------------------------------------------------------------------
 USEFUL LINKS TO THIS TOPIC:
-http://code.google.com/p/zxing/
+
 
 
