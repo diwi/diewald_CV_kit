@@ -1,10 +1,23 @@
 /**
- * diewald_CV - Computer Vision - Processing Library.
  * 
- * this processing-library provides simple tools needed in computer-vision.
+ * diewald_CV_kit v1.0
+ * 
+ * this library provides simple tools needed in computer-vision.
  * 
  * 
- * Copyright (c) 2011 Thomas Diewald
+ * 
+ *   (C) 2011    Thomas Diewald
+ *               http://www.thomasdiewald.com
+ *   
+ *   last built: 12/09/2011
+ *   
+ *   download:   http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
+ *   source:     https://github.com/diwi/diewald_CV_kit 
+ *   
+ *   tested OS:  osx,windows
+ *   processing: 1.5.1, 2.04
+ *
+ *
  *
  *
  * This source is free software; you can redistribute it and/or modify
@@ -24,6 +37,7 @@
  */
 
 
+
 package diewald_CV_kit.libraryinfo;
 /**
  * 
@@ -34,7 +48,7 @@ package diewald_CV_kit.libraryinfo;
  */
 public final class LibraryInfo {
   
-  private static final String DATE_    = "sept 2011";
+  private static final String DATE_    = "dec 2011";
   private static final String AUTHOR_  = "thomas diewald";
   private static final String NAME_    = "diewald_CV_kit";
   private static final String VERSION_ = "v1.00";
