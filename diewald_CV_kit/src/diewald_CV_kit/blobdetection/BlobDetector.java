@@ -156,7 +156,7 @@ public final class BlobDetector {
     } 
 
     
-    
+    /*
     // CREATE BLOBS FROM PIXELROWS (hidden from library user!)
     // there are currently two ways, to do this... recursively iterating through 
     // the linked pixelrows, or by using a stack.
@@ -181,33 +181,33 @@ public final class BlobDetector {
         }
       }
     } else { // use recursive version, to create blob from adjacent pixelrows
-      try
-      {
-        int blob_id = 0;
-        for(int idx = 0; idx < pixelrows.size() ; idx++){
-          PixelRow pr = pixelrows.get(idx);
-          if( pr.getBlob() == null ) {
-            Blob new_blob = new Blob(this, blob_id, pr, false);
-            if( new_blob.getNumberOfPixels() >= min_blob_pixels_ && 
-                new_blob.getNumberOfPixels() <= max_blob_pixels_ ){
-              blobs_.add(new_blob);
-              blob_id++;
-            }
+      
+    }
+*/
+    try
+    {
+      int blob_id = 0;
+      for(int idx = 0; idx < pixelrows.size() ; idx++){
+        PixelRow pr = pixelrows.get(idx);
+        if( pr.getBlob() == null ) {
+          Blob new_blob = new Blob(this, blob_id, pr);
+          if( new_blob.getNumberOfPixels() >= min_blob_pixels_ && 
+              new_blob.getNumberOfPixels() <= max_blob_pixels_ ){
+            blobs_.add(new_blob);
+            blob_id++;
           }
         }
       }
-      catch(StackOverflowError e){
-        String class_name = this.getClass().getCanonicalName();
-        System.err.println("diewald_CV_kit: error type:  " + e);
-        System.err.println("                in class:    " + class_name);
-        System.err.println("                ... while generating blobs ...");
-        System.err.println("                why?: blob has too much small branches / too much pixels to link");
-        blobs_.clear();
-        return false;
-      }
     }
-
-    
+    catch(StackOverflowError e){
+      String class_name = this.getClass().getCanonicalName();
+      System.err.println("diewald_CV_kit: error type:  " + e);
+      System.err.println("                in class:    " + class_name);
+      System.err.println("                ... while generating blobs ...");
+      System.err.println("                why?: blob has too much small branches / too much pixels to link");
+      blobs_.clear();
+      return false;
+    }
     
     
     for(int i = 0; i < blobs_.size(); i++ ){

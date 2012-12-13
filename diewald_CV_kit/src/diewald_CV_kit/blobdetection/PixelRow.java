@@ -91,7 +91,7 @@ public final class PixelRow {
   }
   
   
-  
+  /*
   // alternative version to avoid recursion (and stackoverflow exception)
   private final static PixelRow[] stack = new PixelRow[30000]; 
   
@@ -134,7 +134,7 @@ public final class PixelRow {
       }
     }
   }
-  
+  */
   protected final Blob getBlob(){
     return blob_;
   }
