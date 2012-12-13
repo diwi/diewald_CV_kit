@@ -1,21 +1,21 @@
 /**
  * 
- * diewald_CV_kit v1.0
+ * diewald_CV_kit v1.1
  * 
  * this library provides simple tools needed in computer-vision.
  * 
  * 
  * 
- *   (C) 2011    Thomas Diewald
+ *   (C) 2012    Thomas Diewald
  *               http://www.thomasdiewald.com
  *   
- *   last built: 12/09/2011
+ *   last built: 12/13/2012
  *   
  *   download:   http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
  *   source:     https://github.com/diwi/diewald_CV_kit 
  *   
  *   tested OS:  osx,windows
- *   processing: 1.5.1, 2.04
+ *   processing: 1.5.1, 2.07
  *
  *
  *
@@ -375,8 +375,9 @@ public abstract class Polyline {
     Pixel p;
     int[] x_coords = new int[list.size()];
     int[] y_coords = new int[list.size()];
+    
 
-    for(int idx = 0; idx < list.size(); idx++){
+    for(int idx = 0; idx < list.size(); idx++, list.gotoNext()){
       p = list.getCurrentNode().get();
       x_coords[idx] = p.x_;
       y_coords[idx] = p.y_;

@@ -19,7 +19,7 @@
 // key 's' - start making movie
 // key 'e' - stop making movie
 //---------------------------------------------------------
-
+import java.util.Locale;
 import diewald_CV_kit.libraryinfo.*;
 import diewald_CV_kit.utility.*;
 import diewald_CV_kit.blobdetection.*;

@@ -1,21 +1,21 @@
 /**
  * 
- * diewald_CV_kit v1.0
+ * diewald_CV_kit v1.1
  * 
  * this library provides simple tools needed in computer-vision.
  * 
  * 
  * 
- *   (C) 2011    Thomas Diewald
+ *   (C) 2012    Thomas Diewald
  *               http://www.thomasdiewald.com
  *   
- *   last built: 12/09/2011
+ *   last built: 12/13/2012
  *   
  *   download:   http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
  *   source:     https://github.com/diwi/diewald_CV_kit 
  *   
  *   tested OS:  osx,windows
- *   processing: 1.5.1, 2.04
+ *   processing: 1.5.1, 2.07
  *
  *
  *
@@ -154,13 +154,25 @@ public final class BlobDetector {
         
       } 
     } 
+
     
-    try{
+    
+    // CREATE BLOBS FROM PIXELROWS (hidden from library user!)
+    // there are currently two ways, to do this... recursively iterating through 
+    // the linked pixelrows, or by using a stack.
+    // using the new stackversion avoids a possible stack-overflow-exception
+    // when recursing too deep. 
+    // TODO: allow adjusting stacksize! (current limit is 30000)
+    
+    boolean STACK_VERSION = true;
+    
+     
+    if( STACK_VERSION ){ // use stack version
       int blob_id = 0;
       for(int idx = 0; idx < pixelrows.size() ; idx++){
         PixelRow pr = pixelrows.get(idx);
         if( pr.getBlob() == null ) {
-          Blob new_blob = new Blob(this, blob_id, pr);
+          Blob new_blob = new Blob(this, blob_id, pr, true);
           if( new_blob.getNumberOfPixels() >= min_blob_pixels_ && 
               new_blob.getNumberOfPixels() <= max_blob_pixels_ ){
             blobs_.add(new_blob);
@@ -168,17 +180,34 @@ public final class BlobDetector {
           }
         }
       }
-    }
-    catch(StackOverflowError e){
-      String class_name = this.getClass().getCanonicalName();
-      System.err.println("diewald_CV_kit: error type:  " + e);
-      System.err.println("                in class:    " + class_name);
-      System.err.println("                ... while generating blobs ...");
-      System.err.println("                why?: blob has too much small branches / too much pixels to link");
-      blobs_.clear();
-      return false;
+    } else { // use recursive version, to create blob from adjacent pixelrows
+      try
+      {
+        int blob_id = 0;
+        for(int idx = 0; idx < pixelrows.size() ; idx++){
+          PixelRow pr = pixelrows.get(idx);
+          if( pr.getBlob() == null ) {
+            Blob new_blob = new Blob(this, blob_id, pr, false);
+            if( new_blob.getNumberOfPixels() >= min_blob_pixels_ && 
+                new_blob.getNumberOfPixels() <= max_blob_pixels_ ){
+              blobs_.add(new_blob);
+              blob_id++;
+            }
+          }
+        }
+      }
+      catch(StackOverflowError e){
+        String class_name = this.getClass().getCanonicalName();
+        System.err.println("diewald_CV_kit: error type:  " + e);
+        System.err.println("                in class:    " + class_name);
+        System.err.println("                ... while generating blobs ...");
+        System.err.println("                why?: blob has too much small branches / too much pixels to link");
+        blobs_.clear();
+        return false;
+      }
     }
 
+    
     
     
     for(int i = 0; i < blobs_.size(); i++ ){

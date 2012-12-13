@@ -1,21 +1,21 @@
 /**
  * 
- * diewald_CV_kit v1.0
+ * diewald_CV_kit v1.1
  * 
  * this library provides simple tools needed in computer-vision.
  * 
  * 
  * 
- *   (C) 2011    Thomas Diewald
+ *   (C) 2012    Thomas Diewald
  *               http://www.thomasdiewald.com
  *   
- *   last built: 12/09/2011
+ *   last built: 12/13/2012
  *   
  *   download:   http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
  *   source:     https://github.com/diwi/diewald_CV_kit 
  *   
  *   tested OS:  osx,windows
- *   processing: 1.5.1, 2.04
+ *   processing: 1.5.1, 2.07
  *
  *
  *
@@ -41,6 +41,7 @@
 package diewald_CV_kit.blobdetection;
 
 import java.util.ArrayList;
+//import java.util.Stack;
 
 
 /**
@@ -57,9 +58,9 @@ public final class PixelRow {
   protected final int xs_; // row start 
   protected int xe_;       // row end
   
-  protected final ArrayList<PixelRow> top_rows_    = new ArrayList<PixelRow>(3);
-  protected final ArrayList<PixelRow> bottom_rows_ = new ArrayList<PixelRow>(3);
-  private PixelRow last_added_ = null;
+  protected ArrayList<PixelRow> top_rows_    = new ArrayList<PixelRow>(3);
+  protected ArrayList<PixelRow> bottom_rows_ = new ArrayList<PixelRow>(3);
+  protected PixelRow last_added_ = null;
   protected Blob blob_;
   
   protected PixelRow(int x, int y){ 
@@ -75,17 +76,64 @@ public final class PixelRow {
     }
   }
   
+  
+
   protected final void linkWithBlob(Blob blob){
     if( blob_ != null )
       return;
     blob_ = blob;
-
     blob_.addPixelRow(this);
     
     for(int i = 0; i < top_rows_   .size(); i++ ) top_rows_   .get(i).linkWithBlob(blob);
     for(int i = 0; i < bottom_rows_.size(); i++ ) bottom_rows_.get(i).linkWithBlob(blob); 
+    
+    
   }
   
+  
+  
+  // alternative version to avoid recursion (and stackoverflow exception)
+  private final static PixelRow[] stack = new PixelRow[30000]; 
+  
+  protected final static void linkWithBlob(final Blob blob, PixelRow pixelrow){
+ 
+    // V1: using java.util.Stack
+//    Stack<PixelRow> stack = new Stack<PixelRow>();
+//    stack.add(pr);
+//    
+//    while( !stack.empty() ){
+//      pr = stack.pop();
+//      if( pr.blob_ == null ){
+//        pr.blob_ = blob;
+//        blob.addPixelRow(pr);
+//   
+//        stack.addAll(pr.top_rows_);
+//        stack.addAll(pr.bottom_rows_);
+//      }
+//    }
+    
+   
+    // V2: using array and stack-pointer (... stack-array: final and static!!!)
+    int stack_ptr = 0;
+    stack[0] = pixelrow;
+
+
+    while( stack_ptr >= 0)
+    {
+      pixelrow = stack[stack_ptr--];
+ 
+      if( pixelrow.blob_ == null )
+      {
+        pixelrow.blob_ = blob;
+        blob.addPixelRow(pixelrow);
+  
+        for(int i = pixelrow.top_rows_   .size(); --i >= 0; ) stack[++stack_ptr] = pixelrow.top_rows_   .get(i);
+        for(int i = pixelrow.bottom_rows_.size(); --i >= 0; ) stack[++stack_ptr] = pixelrow.bottom_rows_.get(i);
+//        pixelrow.top_rows_   = null;
+//        pixelrow.bottom_rows_= null;
+      }
+    }
+  }
   
   protected final Blob getBlob(){
     return blob_;

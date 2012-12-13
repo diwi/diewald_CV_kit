@@ -15,7 +15,7 @@
 // of course you can make some smarter tracking, by checking for other marker features too!
 //
 
-
+import java.util.Locale;
 import diewald_CV_kit.libraryinfo.*;
 import diewald_CV_kit.utility.*;
 import diewald_CV_kit.blobdetection.*;

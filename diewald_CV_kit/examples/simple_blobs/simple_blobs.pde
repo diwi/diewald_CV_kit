@@ -16,7 +16,7 @@
 // key 'b'   - draw boundingsboxes of blobs
 // key 'f'   - fill blobs
 //---------------------------------------------------------
-
+import java.util.Locale;
 import diewald_CV_kit.libraryinfo.*;
 import diewald_CV_kit.utility.*;
 import diewald_CV_kit.blobdetection.*;

@@ -1,21 +1,21 @@
 /**
  * 
- * diewald_CV_kit v1.0
+ * diewald_CV_kit v1.1
  * 
  * this library provides simple tools needed in computer-vision.
  * 
  * 
  * 
- *   (C) 2011    Thomas Diewald
+ *   (C) 2012    Thomas Diewald
  *               http://www.thomasdiewald.com
  *   
- *   last built: 12/09/2011
+ *   last built: 12/13/2012
  *   
  *   download:   http://thomasdiewald.com/processing/libraries/diewald_CV_kit/
  *   source:     https://github.com/diwi/diewald_CV_kit 
  *   
  *   tested OS:  osx,windows
- *   processing: 1.5.1, 2.04
+ *   processing: 1.5.1, 2.07
  *
  *
  *
@@ -48,10 +48,10 @@ package diewald_CV_kit.libraryinfo;
  */
 public final class LibraryInfo {
   
-  private static final String DATE_    = "dec 2011";
+  private static final String DATE_    = "dec 2012";
   private static final String AUTHOR_  = "thomas diewald";
   private static final String NAME_    = "diewald_CV_kit";
-  private static final String VERSION_ = "v1.00";
+  private static final String VERSION_ = "v1.10";
   
   private LibraryInfo(){
   }
